@@ -4,16 +4,16 @@
 #
 Name     : perl-Math-Calc-Units
 Version  : 1.07
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-calc-units-perl/libmath-calc-units-perl_1.07-2.debian.tar.xz
 Summary  : ~
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0 GPL-2.0
-Requires: perl-Math-Calc-Units-bin
-Requires: perl-Math-Calc-Units-license
-Requires: perl-Math-Calc-Units-man
+Requires: perl-Math-Calc-Units-bin = %{version}-%{release}
+Requires: perl-Math-Calc-Units-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 Examples:
@@ -23,11 +23,20 @@ It won't take *that* long to download this 650MB cd image over Mom's
 %package bin
 Summary: bin components for the perl-Math-Calc-Units package.
 Group: Binaries
-Requires: perl-Math-Calc-Units-license
-Requires: perl-Math-Calc-Units-man
+Requires: perl-Math-Calc-Units-license = %{version}-%{release}
 
 %description bin
 bin components for the perl-Math-Calc-Units package.
+
+
+%package dev
+Summary: dev components for the perl-Math-Calc-Units package.
+Group: Development
+Requires: perl-Math-Calc-Units-bin = %{version}-%{release}
+Provides: perl-Math-Calc-Units-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Math-Calc-Units package.
 
 
 %package license
@@ -38,19 +47,11 @@ Group: Default
 license components for the perl-Math-Calc-Units package.
 
 
-%package man
-Summary: man components for the perl-Math-Calc-Units package.
-Group: Default
-
-%description man
-man components for the perl-Math-Calc-Units package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Math-Calc-Units-1.07
-mkdir -p %{_topdir}/BUILD/Math-Calc-Units-1.07/deblicense/
+cd ..
+%setup -q -T -D -n Math-Calc-Units-1.07 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Calc-Units-1.07/deblicense/
 
 %build
@@ -75,13 +76,13 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Math-Calc-Units
-cp COPYING %{buildroot}/usr/share/doc/perl-Math-Calc-Units/COPYING
-cp LICENSE %{buildroot}/usr/share/doc/perl-Math-Calc-Units/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units
+cp COPYING %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/COPYING
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -90,31 +91,31 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Compute.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Base.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Base2Metric.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Byte.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Combo.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Date.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Distance.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Metric.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Multi.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Convert/Time.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Grammar.pm
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Grammar.y
-/usr/lib/perl5/site_perl/5.26.1/Math/Calc/Units/Rank.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Compute.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Base.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Base2Metric.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Byte.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Combo.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Date.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Distance.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Metric.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Multi.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Convert/Time.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Grammar.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Grammar.y
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Calc/Units/Rank.pm
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/ucalc
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Math-Calc-Units/COPYING
-/usr/share/doc/perl-Math-Calc-Units/LICENSE
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Math::Calc::Units.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Math-Calc-Units/COPYING
+/usr/share/package-licenses/perl-Math-Calc-Units/LICENSE
