@@ -91,21 +91,21 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Compute.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Base.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Base2Metric.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Byte.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Combo.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Date.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Distance.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Metric.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Multi.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Convert/Time.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Grammar.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Grammar.y
-/usr/lib/perl5/vendor_perl/5.28.0/Math/Calc/Units/Rank.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Compute.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Base.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Base2Metric.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Byte.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Combo.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Date.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Distance.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Metric.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Multi.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Convert/Time.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Grammar.pm
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Grammar.y
+/usr/lib/perl5/vendor_perl/5.28.1Math/Calc/Units/Rank.pm
 
 %files bin
 %defattr(-,root,root,-)
