@@ -4,11 +4,11 @@
 #
 Name     : perl-Math-Calc-Units
 Version  : 1.07
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-calc-units-perl/libmath-calc-units-perl_1.07-2.debian.tar.xz
-Summary  : ~
+Summary  : Human-readable unit-aware calculator
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0 GPL-2.0
 Requires: perl-Math-Calc-Units-bin = %{version}-%{release}
@@ -34,6 +34,7 @@ Summary: dev components for the perl-Math-Calc-Units package.
 Group: Development
 Requires: perl-Math-Calc-Units-bin = %{version}-%{release}
 Provides: perl-Math-Calc-Units-devel = %{version}-%{release}
+Requires: perl-Math-Calc-Units = %{version}-%{release}
 
 %description dev
 dev components for the perl-Math-Calc-Units package.
@@ -52,7 +53,7 @@ license components for the perl-Math-Calc-Units package.
 cd ..
 %setup -q -T -D -n Math-Calc-Units-1.07 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Calc-Units-1.07/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Calc-Units-1.07/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -79,6 +80,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units
 cp COPYING %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/COPYING
 cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/deblicense_copyright
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -119,3 +121,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/perl-Math-Calc-Units/COPYING
 /usr/share/package-licenses/perl-Math-Calc-Units/LICENSE
+/usr/share/package-licenses/perl-Math-Calc-Units/deblicense_copyright
