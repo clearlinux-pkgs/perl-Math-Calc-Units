@@ -4,15 +4,16 @@
 #
 Name     : perl-Math-Calc-Units
 Version  : 1.07
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-calc-units-perl/libmath-calc-units-perl_1.07-2.debian.tar.xz
-Summary  : Human-readable unit-aware calculator
+Summary  : ~
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0 GPL-2.0
 Requires: perl-Math-Calc-Units-bin = %{version}-%{release}
 Requires: perl-Math-Calc-Units-license = %{version}-%{release}
+Requires: perl-Math-Calc-Units-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -48,18 +49,28 @@ Group: Default
 license components for the perl-Math-Calc-Units package.
 
 
+%package perl
+Summary: perl components for the perl-Math-Calc-Units package.
+Group: Default
+Requires: perl-Math-Calc-Units = %{version}-%{release}
+
+%description perl
+perl components for the perl-Math-Calc-Units package.
+
+
 %prep
 %setup -q -n Math-Calc-Units-1.07
-cd ..
-%setup -q -T -D -n Math-Calc-Units-1.07 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libmath-calc-units-perl_1.07-2.debian.tar.xz
+cd %{_builddir}/Math-Calc-Units-1.07
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Calc-Units-1.07/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Math-Calc-Units-1.07/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -69,7 +80,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -78,9 +89,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units
-cp COPYING %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/COPYING
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/deblicense_copyright
+cp %{_builddir}/Math-Calc-Units-1.07/COPYING %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/b7db613f1590a02fd8544d4253d0201a88f0b919
+cp %{_builddir}/Math-Calc-Units-1.07/LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/5a42859d23b7f1571dc1e9bedb33669a5c6f9c0c
+cp %{_builddir}/Math-Calc-Units-1.07/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Calc-Units/3c1f182c50bd8369f72f36d256b4e0194d2b7a89
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -93,21 +104,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Compute.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Base.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Base2Metric.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Byte.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Combo.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Date.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Distance.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Metric.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Multi.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Convert/Time.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Grammar.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Grammar.y
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Calc/Units/Rank.pm
 
 %files bin
 %defattr(-,root,root,-)
@@ -119,6 +115,24 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Math-Calc-Units/COPYING
-/usr/share/package-licenses/perl-Math-Calc-Units/LICENSE
-/usr/share/package-licenses/perl-Math-Calc-Units/deblicense_copyright
+/usr/share/package-licenses/perl-Math-Calc-Units/3c1f182c50bd8369f72f36d256b4e0194d2b7a89
+/usr/share/package-licenses/perl-Math-Calc-Units/5a42859d23b7f1571dc1e9bedb33669a5c6f9c0c
+/usr/share/package-licenses/perl-Math-Calc-Units/b7db613f1590a02fd8544d4253d0201a88f0b919
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Compute.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Base.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Base2Metric.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Byte.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Combo.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Date.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Distance.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Metric.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Multi.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Convert/Time.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Grammar.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Grammar.y
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Calc/Units/Rank.pm
