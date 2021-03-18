@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Calc-Units
 Version  : 1.07
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SF/SFINK/Math-Calc-Units-1.07.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-calc-units-perl/libmath-calc-units-perl_1.07-2.debian.tar.xz
@@ -121,18 +121,18 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Compute.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Base.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Base2Metric.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Byte.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Combo.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Date.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Distance.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Metric.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Multi.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Convert/Time.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Grammar.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Grammar.y
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Calc/Units/Rank.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Compute.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Base.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Base2Metric.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Byte.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Combo.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Date.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Distance.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Metric.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Multi.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Convert/Time.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Grammar.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Grammar.y
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Calc/Units/Rank.pm
